@@ -4,7 +4,8 @@
     "!**/*",
     "tsconfig.app.json",
     "tsconfig.lib.json",
-    ".eslintrc.json"
+    ".eslintrc.json",
+    "tsconfig.json"
   ],
   "overrides": [
     {

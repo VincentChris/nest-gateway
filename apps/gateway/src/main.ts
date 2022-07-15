@@ -11,12 +11,14 @@ import {
 } from '@nestjs/platform-fastify';
 
 import { AppModule } from './app/app.module';
+import { generateDocument } from './utils/doc';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter()
   );
+  generateDocument(app);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3333;
