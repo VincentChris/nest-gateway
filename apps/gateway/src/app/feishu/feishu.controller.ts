@@ -10,7 +10,10 @@ import {
 import { FeishuService } from './feishu.service';
 import { CreateFeishuDto } from './dto/create-feishu.dto';
 import { UpdateFeishuDto } from './dto/update-feishu.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { FeishuMessageDto } from './dto/feishu-message.dto';
 
+@ApiTags('飞书')
 @Controller('feishu')
 export class FeishuController {
   constructor(private readonly feishuService: FeishuService) {}
@@ -43,5 +46,13 @@ export class FeishuController {
   @Get('appToken')
   getAppToken() {
     return this.feishuService.getAppToken();
+  }
+
+  @ApiOperation({
+    summary: '消息推送',
+  })
+  @Post('sendMessage')
+  sendMessage(@Body() params: FeishuMessageDto) {
+    return this.feishuService.sendMessage(params);
   }
 }
