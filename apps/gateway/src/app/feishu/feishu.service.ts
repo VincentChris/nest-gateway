@@ -1,14 +1,18 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { map, tap } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { ConfigService } from '@nestjs/config';
+import { map } from 'rxjs';
+import { IEnvConfig } from '../../interface';
 import { AppTokenFeishu } from './dto/app-token-feishu.dto';
 import { CreateFeishuDto } from './dto/create-feishu.dto';
 import { UpdateFeishuDto } from './dto/update-feishu.dto';
 
 @Injectable()
 export class FeishuService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private configService: ConfigService
+  ) {}
   create(createFeishuDto: CreateFeishuDto) {
     return 'This action adds a new feishu';
   }
@@ -30,14 +34,13 @@ export class FeishuService {
   }
 
   getAppToken() {
+    const { FEISHU_APP_ID, FEISHU_APP_SECRET, FEISHU_URL } =
+      this.configService.get<IEnvConfig['FEISHU_CONFIG']>('FEISHU_CONFIG');
     return this.httpService
-      .post<AppTokenFeishu>(
-        `${environment.FEISHU_CONFIG.FEISHU_URL}/auth/v3/app_access_token/internal`,
-        {
-          app_id: environment.FEISHU_CONFIG.FEISHU_APP_ID,
-          app_secret: environment.FEISHU_CONFIG.FEISHU_APP_SECRET,
-        }
-      )
+      .post<AppTokenFeishu>(`${FEISHU_URL}/auth/v3/app_access_token/internal`, {
+        app_id: FEISHU_APP_ID,
+        app_secret: FEISHU_APP_SECRET,
+      })
       .pipe(map((res) => res.data));
   }
 }
