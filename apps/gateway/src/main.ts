@@ -18,9 +18,9 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter()
   );
-  generateDocument(app);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+  generateDocument(app);
   const port = process.env.PORT || 3333;
   await app.listen(port);
   Logger.log(

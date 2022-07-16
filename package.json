@@ -10,12 +10,11 @@
   "private": true,
   "dependencies": {
     "@fastify/static": "^6.4.0",
-    "@nestjs/axios": "^0.1.0",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "9.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/platform-fastify": "9.0.1",
-    "@nestjs/swagger": "^6.0.3",
+    "@nestjs/swagger": "^6.0.4",
     "fastify-swagger": "^5.2.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
