@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Cache } from 'cache-manager';
-import { catchError, from, map, of, switchMap, tap } from 'rxjs';
+import { catchError, from, map, of, switchMap } from 'rxjs';
 import { IEnvConfig } from '../../interface';
 import { AppTokenFeishu } from './dto/app-token-feishu.dto';
 import { CreateFeishuDto } from './dto/create-feishu.dto';

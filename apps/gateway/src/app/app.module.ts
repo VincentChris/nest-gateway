@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FeishuModule } from './feishu/feishu.module';
+import { UserModule } from './user/user.module';
 import configuration from '../config/configuration';
 
 @Module({
@@ -24,6 +25,7 @@ import configuration from '../config/configuration';
       isGlobal: true,
     }),
     FeishuModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
