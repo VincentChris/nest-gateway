@@ -5,7 +5,6 @@ export const generateDocument = (app) => {
     .setTitle('gateway')
     .setDescription('build a gateway by nestjs')
     .setVersion('1')
-    .setBasePath('api')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
