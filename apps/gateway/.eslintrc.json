@@ -5,7 +5,8 @@
     "tsconfig.app.json",
     "tsconfig.lib.json",
     ".eslintrc.json",
-    "tsconfig.json"
+    "tsconfig.json",
+    "*.md"
   ],
   "overrides": [
     {
