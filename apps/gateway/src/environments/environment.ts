@@ -7,4 +7,9 @@ export const environment = {
     FEISHU_APP_SECRET: 'U1hhN1orP7VBLv1fTXVCicp5BdCkL0g6',
     APP_TOKEN_CACHE_KEY: 'APP_TOKEN_CACHE_KEY',
   },
+  MONGO_CONFIG: {
+    HOST: '106.15.62.53',
+    PORT: 27017,
+    DATA_BASE: 'fast_gateway_test',
+  },
 };

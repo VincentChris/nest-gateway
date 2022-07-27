@@ -1,11 +1,12 @@
 import { CacheModule, Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FeishuModule } from './feishu/feishu.module';
 import { UserModule } from './user/user.module';
 import configuration from '../config/configuration';
+import { IEnvConfig } from '../interface';
 
 @Module({
   imports: [
@@ -13,13 +14,21 @@ import configuration from '../config/configuration';
       load: [configuration],
       isGlobal: true,
     }),
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      host: '106.15.62.53',
-      port: 27017,
-      database: 'fast_gateway_test',
-      synchronize: true,
-      autoLoadEntities: true,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => {
+        const { HOST, PORT, DATA_BASE } =
+          configService.get<IEnvConfig['MONGO_CONFIG']>('MONGO_CONFIG');
+        return {
+          type: 'mongodb',
+          host: HOST,
+          port: PORT,
+          database: DATA_BASE,
+          synchronize: true,
+          autoLoadEntities: true,
+        };
+      },
+      inject: [ConfigService],
     }),
     CacheModule.register({
       isGlobal: true,
