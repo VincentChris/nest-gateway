@@ -1,0 +1,4 @@
+# create redis
+FROM redis
+LABEL org.opencontainers.image.authors="vincentchris@126.com"
+EXPOSE 6379
