@@ -12,4 +12,9 @@ export const environment = {
     PORT: 27017,
     DATA_BASE: 'fast_gateway_test',
   },
+  REDIS_CONFIG: {
+    HOST: '106.15.62.53',
+    PORT: 6379,
+    DATA_BASE: 1,
+  },
 };

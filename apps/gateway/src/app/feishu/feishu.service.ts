@@ -46,11 +46,15 @@ export class FeishuService {
               }
             )
             .pipe(
-              map((res) => {
-                this.cacheManager.set(this.APP_TOKEN_CACHE_KEY, token, {
-                  ttl: res.data.expire - 60,
-                });
-                return res.data.app_access_token;
+              map(({ data }) => {
+                this.cacheManager.set(
+                  this.APP_TOKEN_CACHE_KEY,
+                  data.app_access_token,
+                  {
+                    ttl: data.expire - 60,
+                  }
+                );
+                return data.app_access_token;
               })
             );
         }

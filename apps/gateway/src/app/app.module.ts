@@ -1,5 +1,6 @@
 import { CacheModule, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import * as redisStore from 'cache-manager-redis-store';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -30,8 +31,20 @@ import { IEnvConfig } from '../interface';
       },
       inject: [ConfigService],
     }),
-    CacheModule.register({
+    CacheModule.registerAsync({
       isGlobal: true,
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => {
+        const { HOST, PORT, DATA_BASE } =
+          configService.get<IEnvConfig['REDIS_CONFIG']>('REDIS_CONFIG');
+        return {
+          store: redisStore,
+          host: HOST,
+          port: PORT,
+          db: DATA_BASE,
+        };
+      },
+      inject: [ConfigService],
     }),
     FeishuModule,
     UserModule,
