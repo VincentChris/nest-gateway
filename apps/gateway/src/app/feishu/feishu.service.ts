@@ -8,6 +8,7 @@ import { AppTokenFeishu } from './dto/app-token-feishu.dto';
 import { CreateFeishuDto } from './dto/create-feishu.dto';
 import { FeishuMessageDto } from './dto/feishu-message.dto';
 import { UpdateFeishuDto } from './dto/update-feishu.dto';
+import { UserTokenFeishu } from './dto/user-token-feishu.dto';
 
 @Injectable()
 export class FeishuService {
@@ -60,6 +61,24 @@ export class FeishuService {
         }
         return of(token);
       })
+    );
+  }
+
+  getUserToken(code: string) {
+    return this.getAppToken().pipe(
+      switchMap((app_token) =>
+        this.httpService
+          .post<UserTokenFeishu>(
+            `${this.FEISHU_URL}/authen/v1/access_token`,
+            { grant_type: 'authorization_code', code },
+            {
+              headers: {
+                Authorization: `Bearer ${app_token}`,
+              },
+            }
+          )
+          .pipe(map((res) => res.data))
+      )
     );
   }
 

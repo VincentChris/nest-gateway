@@ -12,6 +12,7 @@ import { CreateFeishuDto } from './dto/create-feishu.dto';
 import { UpdateFeishuDto } from './dto/update-feishu.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FeishuMessageDto } from './dto/feishu-message.dto';
+import { GetUserTokenDto } from './dto/get-user-toke.dto';
 
 @ApiTags('飞书')
 @Controller('feishu')
@@ -54,5 +55,10 @@ export class FeishuController {
   @Post('sendMessage')
   sendMessage(@Body() params: FeishuMessageDto) {
     return this.feishuService.sendMessage(params);
+  }
+
+  @Post('getUserToken')
+  getUserToken(@Body() params: GetUserTokenDto) {
+    return this.feishuService.getUserToken(params.code);
   }
 }
