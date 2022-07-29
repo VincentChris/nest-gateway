@@ -16,7 +16,7 @@ import { generateDocument } from './utils/doc';
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter()
+    new FastifyAdapter({ logger: true })
   );
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
