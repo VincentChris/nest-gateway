@@ -8,6 +8,8 @@ import { FeishuModule } from './feishu/feishu.module';
 import { UserModule } from './user/user.module';
 import configuration from '../config/configuration';
 import { IEnvConfig } from '../interface';
+import { LoggerModule } from 'nestjs-pino';
+import { getLogConfig } from '../utils';
 
 @Module({
   imports: [
@@ -45,6 +47,21 @@ import { IEnvConfig } from '../interface';
         };
       },
       inject: [ConfigService],
+    }),
+    LoggerModule.forRoot({
+      pinoHttp: {
+        name: 'gateway',
+        transport: {
+          targets: getLogConfig([
+            'fatal',
+            'error',
+            'warn',
+            'info',
+            'debug',
+            'trace',
+          ]),
+        },
+      },
     }),
     FeishuModule,
     UserModule,
