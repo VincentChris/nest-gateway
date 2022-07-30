@@ -18,18 +18,16 @@ export interface UserDataFeishu {
   refresh_expires_in: number;
   refresh_token: string;
 }
-export interface UserInfoFeishu
-  extends Omit<
-    UserDataFeishu,
-    | 'expires_in'
-    | 'refresh_expires_in'
-    | 'tenant_key'
-    | 'enterprise_email'
-    | 'token_type'
-    | 'user_id'
-    | 'union_id'
-    | 'open_id'
-  > {
+export interface UserInfoFeishu {
+  access_token: UserDataFeishu['access_token'];
+  avatar_big: UserDataFeishu['avatar_big'];
+  avatar_middle: UserDataFeishu['avatar_middle'];
+  avatar_thumb: UserDataFeishu['avatar_thumb'];
+  avatar_url: UserDataFeishu['avatar_url'];
+  email: UserDataFeishu['access_token'];
+  en_name: UserDataFeishu['en_name'];
+  mobile: UserDataFeishu['access_token'];
+  name: UserDataFeishu['name'];
   feishuUserId: UserDataFeishu['user_id'];
   feishuUnionId: UserDataFeishu['union_id'];
 }

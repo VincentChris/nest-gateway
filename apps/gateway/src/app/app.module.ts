@@ -10,6 +10,7 @@ import configuration from '../config/configuration';
 import { IEnvConfig } from '../interface';
 import { LoggerModule } from 'nestjs-pino';
 import { getLogConfig } from '../utils';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -65,6 +66,7 @@ import { getLogConfig } from '../utils';
     }),
     FeishuModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
