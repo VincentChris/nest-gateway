@@ -59,6 +59,6 @@ export class FeishuController {
 
   @Post('getUserToken')
   getUserToken(@Body() params: GetUserTokenDto) {
-    return this.feishuService.getUserToken(params.code);
+    return this.feishuService.getUserTokenByCode(params.code);
   }
 }
