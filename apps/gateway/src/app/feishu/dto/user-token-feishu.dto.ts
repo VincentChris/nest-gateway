@@ -1,4 +1,4 @@
-interface Data {
+export interface UserDataFeishu {
   access_token: string;
   token_type: string;
   expires_in: number;
@@ -18,9 +18,23 @@ interface Data {
   refresh_expires_in: number;
   refresh_token: string;
 }
-
+export interface UserInfoFeishu
+  extends Omit<
+    UserDataFeishu,
+    | 'expires_in'
+    | 'refresh_expires_in'
+    | 'tenant_key'
+    | 'enterprise_email'
+    | 'token_type'
+    | 'user_id'
+    | 'union_id'
+    | 'open_id'
+  > {
+  feishuUserId: UserDataFeishu['user_id'];
+  feishuUnionId: UserDataFeishu['union_id'];
+}
 export interface UserTokenFeishu {
   code: number;
   msg: string;
-  data: Data;
+  data: UserDataFeishu;
 }

@@ -14,7 +14,7 @@ import { AppTokenFeishu } from './dto/app-token-feishu.dto';
 import { CreateFeishuDto } from './dto/create-feishu.dto';
 import { FeishuMessageDto } from './dto/feishu-message.dto';
 import { UpdateFeishuDto } from './dto/update-feishu.dto';
-import { UserTokenFeishu } from './dto/user-token-feishu.dto';
+import { UserDataFeishu, UserTokenFeishu } from './dto/user-token-feishu.dto';
 
 @Injectable()
 export class FeishuService {
@@ -46,7 +46,7 @@ export class FeishuService {
     this.REFRESH_TOKEN_CACHE_KEY = REFRESH_TOKEN_CACHE_KEY;
   }
 
-  setCacheUserTokenAndRefreshToken(tokenInfo: UserTokenFeishu['data']) {
+  setCacheUserTokenAndRefreshToken(tokenInfo: UserDataFeishu) {
     const {
       user_id,
       access_token,
@@ -99,7 +99,7 @@ export class FeishuService {
     );
   }
 
-  getUserTokenByCode(code: string) {
+  getFeishuUserInfoByCode(code: string) {
     return this.getAppToken().pipe(
       switchMap((app_token) =>
         this.httpService
@@ -114,16 +114,21 @@ export class FeishuService {
           )
           .pipe(
             map(({ data }) => {
-              const { access_token } = data.data;
-              this.setCacheUserTokenAndRefreshToken(data.data);
-              return access_token;
+              const { data: userInfo } = data;
+              this.setCacheUserTokenAndRefreshToken(userInfo);
+              return userInfo;
             })
           )
       )
     );
   }
+  getUserTokenByCode(code: string) {
+    return this.getFeishuUserInfoByCode(code).pipe(
+      map(({ access_token }) => access_token)
+    );
+  }
 
-  getUserTokenByRefreshToken(refresh_token: string) {
+  getFeishuUserInfoByRefreshToken(refresh_token: string) {
     return this.getAppToken().pipe(
       switchMap((app_token) =>
         this.httpService
@@ -141,12 +146,18 @@ export class FeishuService {
           )
           .pipe(
             map(({ data }) => {
-              const { access_token } = data.data;
-              this.setCacheUserTokenAndRefreshToken(data.data);
-              return access_token;
+              const { data: userInfo } = data;
+              this.setCacheUserTokenAndRefreshToken(userInfo);
+              return userInfo;
             })
           )
       )
+    );
+  }
+
+  getUserTokenByRefreshToken(refresh_token: string) {
+    return this.getFeishuUserInfoByRefreshToken(refresh_token).pipe(
+      map(({ access_token }) => access_token)
     );
   }
 

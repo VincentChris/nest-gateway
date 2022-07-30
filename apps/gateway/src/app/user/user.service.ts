@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { from, switchMap } from 'rxjs';
 import { Repository } from 'typeorm';
+import { UserInfoFeishu } from '../feishu/dto/user-token-feishu.dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -12,6 +14,14 @@ export class UserService {
 
   createOrSave(user) {
     return this.usersRepository.save(user);
+  }
+
+  createOrSaveByFeishu(user: UserInfoFeishu) {
+    return from(this.usersRepository.findBy({ email: user.email })).pipe(
+      switchMap((userEntity) =>
+        from(this.usersRepository.save({ ...userEntity, ...user }))
+      )
+    );
   }
 
   findAll(): Promise<User[]> {
