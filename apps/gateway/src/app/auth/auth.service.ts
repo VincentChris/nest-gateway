@@ -50,7 +50,7 @@ export class AuthService {
   }
 
   validateFeishuUser(code: string) {
-    this.getFeishuInfoByCode(code).pipe(
+    return this.getFeishuInfoByCode(code).pipe(
       switchMap((userInfo) => this.userService.createOrSaveByFeishu(userInfo))
     );
   }
