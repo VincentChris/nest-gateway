@@ -49,6 +49,7 @@
     "@nrwl/nest": "14.4.2",
     "@nrwl/node": "14.4.2",
     "@nrwl/workspace": "14.4.2",
+    "@nx-plus/vue": "^14.1.0",
     "@types/cache-manager": "^4.0.1",
     "@types/cache-manager-redis-store": "^2.0.1",
     "@types/jest": "27.4.1",
