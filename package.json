@@ -5,9 +5,11 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "postinstall": "node node_modules/@nx-plus/vue/patch-nx-dep-graph.js"
   },
   "private": true,
+  "postinstall": "node node_modules/@nx-plus/vue/patch-nx-dep-graph.js",
   "dependencies": {
     "@fastify/static": "^6.4.0",
     "@nestjs/axios": "^0.1.0",
@@ -24,6 +26,7 @@
     "cache-manager-redis-store": "^2.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "core-js": "^3.6.5",
     "dayjs": "^1.11.4",
     "fastify-cookie": "^5.7.0",
     "fastify-swagger": "^5.2.0",
@@ -37,12 +40,15 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "tslib": "^2.0.0",
-    "typeorm": "^0.3.7"
+    "typeorm": "^0.3.7",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
     "@nrwl/cli": "14.4.2",
+    "@nrwl/cypress": "^14.5.1",
     "@nrwl/eslint-plugin-nx": "14.4.2",
     "@nrwl/jest": "14.4.2",
     "@nrwl/linter": "14.4.2",
@@ -58,14 +64,30 @@
     "@types/passport-local": "^1.0.34",
     "@typescript-eslint/eslint-plugin": "5.29.0",
     "@typescript-eslint/parser": "5.29.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-prettier": "6.0.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "@vue/test-utils": "^2.0.0-0",
+    "babel-loader": "8.2.5",
+    "cypress": "^10.2.0",
     "eslint": "8.15.0",
     "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^7.0.0-0",
     "jest": "27.5.1",
+    "jest-serializer-vue": "^2.0.2",
+    "jest-transform-stub": "^2.0.0",
     "nx": "14.4.2",
     "prettier": "2.6.2",
     "run-script-webpack-plugin": "^0.1.1",
     "ts-jest": "27.1.4",
+    "ts-node": "~10.8.0",
     "typescript": "4.7.4",
+    "vue3-jest": "^27.0.0-alpha.1",
     "webpack": "^5.73.0",
     "webpack-node-externals": "^3.0.0"
   }
