@@ -28,6 +28,7 @@
     "class-validator": "^0.13.2",
     "core-js": "^3.6.5",
     "dayjs": "^1.11.4",
+    "element-plus": "^2.2.11",
     "fastify-cookie": "^5.7.0",
     "fastify-swagger": "^5.2.0",
     "mongodb": "^4.8.0",
