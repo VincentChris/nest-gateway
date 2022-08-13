@@ -6,7 +6,7 @@
     "prettier"
   ],
   "rules": {},
-  "ignorePatterns": ["!**/*"],
+  "ignorePatterns": ["!**/*", "configure-webpack.js"],
   "env": {
     "node": true
   },
