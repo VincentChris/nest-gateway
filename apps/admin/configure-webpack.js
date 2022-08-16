@@ -17,9 +17,12 @@ module.exports = {
   // ...
   plugins: [
     AutoImport({
+      dts: './apps/admin/typings/auto-imports.d.ts',
       resolvers: [ElementPlusResolver()],
     }),
     Components({
+      dts: './apps/admin/typings/components.d.ts',
+      dirs: './apps/admin/src/components',
       resolvers: [ElementPlusResolver()],
     }),
   ],
