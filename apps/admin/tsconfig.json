@@ -1,14 +1,14 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./typings",
     "jsx": "preserve",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "types": ["webpack-env", "node"],
-    "strict": true,
-    "typeRoots": ["./typings"]
+    "strict": true
   },
-  "include": ["./typings"],
   "files": [],
   "references": [
     {

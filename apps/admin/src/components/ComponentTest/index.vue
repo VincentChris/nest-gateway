@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ test }}</h1>
     <p>
-      For a guide and recipes on how to configure / customize this project,<br />
+      For a guide and recipes on how to configure / customize this project,<br/>
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
@@ -10,7 +10,7 @@
     <ul>
       <li>
         <a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank"
-          rel="noopener">typescript</a>
+           rel="noopener">typescript</a>
       </li>
     </ul>
     <h3>Essential Links</h3>
@@ -53,12 +53,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'ComponentTest',
   props: {
-    test: String,
+    test: {
+      type: String,
+      required: true
+    }
   },
 });
 </script>
