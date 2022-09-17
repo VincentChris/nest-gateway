@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <el-button type='primary'>Default</el-button>
-    <HelloWorld msg='sss' />
+    <el-button type="primary">Default</el-button>
+    <HelloWorld msg="sss" />
     <ComponentTest test="aaa" />
   </div>
 </template>
@@ -16,7 +16,7 @@ export default defineComponent({
   name: 'Home',
   components: {
     HelloWorld,
-    ComponentTest
+    ComponentTest,
   },
 });
 </script>

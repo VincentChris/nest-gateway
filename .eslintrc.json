@@ -1,10 +1,10 @@
 {
   "root": true,
   "ignorePatterns": ["**/*", "node_modules"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "prettier"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx", "*.vue"],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
@@ -17,6 +17,13 @@
                 "onlyDependOnLibsWithTags": ["*"]
               }
             ]
+          }
+        ],
+        "prettier/prettier": [
+          "error",
+          {
+            "singleQuote": true,
+            "endOfLine": "auto"
           }
         ]
       }
