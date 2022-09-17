@@ -5,7 +5,7 @@
     "@vue/typescript/recommended"
   ],
   "rules": {},
-  "ignorePatterns": ["!**/*", "configure-webpack.js"],
+  "ignorePatterns": ["!**/*", "configure-webpack.js", "typings/"],
   "env": {
     "node": true
   },
