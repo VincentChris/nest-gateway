@@ -4,7 +4,9 @@
     "plugin:vue/vue3-essential",
     "@vue/typescript/recommended"
   ],
-  "rules": {},
+  "rules": {
+    "@typescript-eslint/no-explicit-any": false
+  },
   "ignorePatterns": ["!**/*", "configure-webpack.js", "typings/"],
   "env": {
     "node": true

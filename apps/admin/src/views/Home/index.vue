@@ -112,7 +112,10 @@ const toogleShowAside = () => {
 };
 const editableTabsValue = ref(pageLoadUrl);
 const editableTabs = ref(menuData);
-const handleTabsEdit: any = (targetName: string, action: 'remove' | 'add') => {
+const handleTabsEdit: (name: any, actionType: 'remove' | 'add') => void = (
+  targetName: string,
+  action: 'remove' | 'add'
+) => {
   if (action === 'add') {
   } else if (action === 'remove') {
   }
