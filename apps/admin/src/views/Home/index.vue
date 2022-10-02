@@ -20,7 +20,7 @@
         </el-menu>
       </el-aside>
     </Transition>
-    <el-main>
+    <el-main class="el-main">
       <el-row justify="space-between" class="right-head">
         <el-col :span="8" class="left-nav">
           <el-icon class="toggle-icon" @click="toogleShowAside">
@@ -40,26 +40,37 @@
         </el-col>
       </el-row>
       <el-divider />
-      <div>
+      <div class="content">
         <el-tabs
           v-model="editableTabsValue"
           type="card"
-          editable
-          class="demo-tabs"
+          :addable="false"
+          :closable="editableTabs.length > 1"
+          class="el-tabs"
           @edit="handleTabsEdit"
           @tab-click="onTabClick"
         >
           <el-tab-pane
             v-for="item in editableTabs"
             :key="item.url"
-            :label="item.title"
             :name="item.url"
+            class="el-tab-pane"
           >
-            <router-view v-slot="{ Component, route }">
-              <Transition :name="route.meta.transition as string || 'fade'">
-                <component :is="Component" />
-              </Transition>
-            </router-view>
+            <template #label>
+              <div class="pane-container">
+                <el-icon :size="13" style="margin-right: 6px">
+                  <component :is="item.icon" />
+                </el-icon>
+                <span>{{ item.title }}</span>
+              </div>
+            </template>
+            <div class="children-container">
+              <router-view v-slot="{ Component, route }">
+                <Transition :name="route.meta.transition as string || 'fade'">
+                  <component :is="Component" />
+                </Transition>
+              </router-view>
+            </div>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -165,9 +176,47 @@ watch(
     display: flex;
   }
 }
-
+.pane-container {
+  display: inline-flex;
+  align-items: center;
+}
 .no-wrap {
   white-space: nowrap;
+}
+.el-main {
+  display: flex;
+  flex-direction: column;
+}
+.el-tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  & > :deep(.el-tabs__header) {
+    margin-bottom: 0;
+  }
+  & > :deep(.el-tabs__content) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.el-tab-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.children-container {
+  background: #f6f8f9;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .slide-fade-enter-active {
