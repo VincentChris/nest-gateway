@@ -71,6 +71,7 @@
                 </Transition>
               </router-view>
             </div>
+            <Footer></Footer>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -89,6 +90,7 @@ import {
 import { useRoute, useRouter } from 'vue-router';
 import { ref, watch, markRaw } from 'vue';
 import { TabsPaneContext } from 'element-plus/es';
+import Footer from '../../components/Footer/index.vue';
 const route = useRoute();
 const router = useRouter();
 const menuData = [
@@ -186,6 +188,7 @@ watch(
 .el-main {
   display: flex;
   flex-direction: column;
+  padding-bottom: 0;
 }
 .el-tabs {
   flex: 1;
@@ -204,6 +207,8 @@ watch(
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding-bottom: 20px;
+  background: #f6f8f9;
 }
 .content {
   flex: 1;
